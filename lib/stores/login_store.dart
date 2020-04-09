@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:thegorgeousotp/otp_page.dart';
+import 'package:thegorgeousotp/pages/home_page.dart';
+import 'package:thegorgeousotp/pages/login_page.dart';
+import 'package:thegorgeousotp/pages/otp_page.dart';
 
 part 'login_store.g.dart';
 
@@ -55,13 +57,11 @@ abstract class LoginStoreBase with Store {
         },
         verificationFailed: (AuthException authException) {
           print("Error message: " + authException.message);
-          if (authException.code == 'invalidCredential') {
-            loginScaffoldKey.currentState.showSnackBar(SnackBar(
-              behavior: SnackBarBehavior.floating,
-              backgroundColor: Colors.red,
-              content: Text('The phone number format is incorrect. Please enter your number in E.164 format. [+][country code][number]', style: TextStyle(color: Colors.white),),
-            ));
-          }
+          loginScaffoldKey.currentState.showSnackBar(SnackBar(
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.red,
+            content: Text('The phone number format is incorrect. Please enter your number in E.164 format. [+][country code][number]', style: TextStyle(color: Colors.white),),
+          ));
           isLoginLoading = false;
         },
         codeSent: (String verificationId, [int forceResendingToken]) async {
@@ -102,9 +102,16 @@ abstract class LoginStoreBase with Store {
 
     firebaseUser = result.user;
 
-    //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()), (Route<dynamic> route) => false);
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()), (Route<dynamic> route) => false);
 
     isLoginLoading = false;
     isOtpLoading = false;
+  }
+
+  @action
+  Future<void> signOut(BuildContext context) async {
+    await _auth.signOut();
+    await Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => LoginPage()), (Route<dynamic> route) => false);
+    firebaseUser = null;
   }
 }

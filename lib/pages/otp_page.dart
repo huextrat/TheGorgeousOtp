@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:provider/provider.dart';
-import 'package:thegorgeousotp/login_store.dart';
+import 'package:thegorgeousotp/stores/login_store.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({Key key}) : super(key: key);
@@ -101,7 +101,7 @@ class _OtpPageState extends State<OtpPage> {
                         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         child: RaisedButton(
                           onPressed: () {
-
+                            loginStore.validateOtpAndLogin(context, text);
                           },
                           color: Color(0xFF503E9D),
                           shape: RoundedRectangleBorder(
