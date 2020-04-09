@@ -14,7 +14,7 @@ Login Screen        |  OTP Screen
 ## Tools
 
 This project uses the phone connection provided by [Firebase](https://pub.dev/packages/firebase_auth).
-It also uses [MobX](https://pub.dev/packages/mobx) and [Provider](https://pub.dev/packages/provider) to manage the status of the application simply and efficiently. 
+It also uses [MobX](https://pub.dev/packages/mobx) and [Provider](https://pub.dev/packages/provider) to manage the state of the application simply and efficiently. 
 
 ## Configuration
 
