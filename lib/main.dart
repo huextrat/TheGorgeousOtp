@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thegorgeousotp/pages/login_page.dart';
 import 'package:thegorgeousotp/pages/splash_page.dart';
 import 'package:thegorgeousotp/stores/login_store.dart';
 

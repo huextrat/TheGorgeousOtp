@@ -39,19 +39,29 @@ class _LoginPageState extends State<LoginPage> {
                                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                                 child: Stack(
                                   children: <Widget>[
-                                    Container(
-                                      height: 240,
-                                      margin: const EdgeInsets.only(top: 100),
-                                      decoration: const BoxDecoration(color: Color(0xFFE1E0F5), borderRadius: BorderRadius.all(Radius.circular(30))),
+                                    Center(
+                                      child: Container(
+                                        height: 240,
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 500
+                                        ),
+                                        margin: const EdgeInsets.only(top: 100),
+                                        decoration: const BoxDecoration(color: Color(0xFFE1E0F5), borderRadius: BorderRadius.all(Radius.circular(30))),
+                                      ),
                                     ),
-                                    Container(margin: const EdgeInsets.symmetric(horizontal: 8), child: Image.asset('assets/img/login.png')),
+                                    Center(
+                                      child: Container(
+                                          constraints: const BoxConstraints(maxHeight: 340),
+                                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                                          child: Image.asset('assets/img/login.png')),
+                                    ),
                                   ],
                                 ),
                               ),
                               Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                                  child: Text('TheGorgeousOtp', style: TextStyle(color: MyColors.primaryColor, fontSize: 30, fontWeight: FontWeight.w800))
-                              )
+                                  child: Text('TheGorgeousOtp',
+                                      style: TextStyle(color: MyColors.primaryColor, fontSize: 30, fontWeight: FontWeight.w800)))
                             ],
                           ),
                         ),
@@ -60,20 +70,24 @@ class _LoginPageState extends State<LoginPage> {
                           child: Column(
                             children: <Widget>[
                               Container(
+                                  constraints: const BoxConstraints(
+                                      maxWidth: 500
+                                  ),
                                   margin: const EdgeInsets.symmetric(horizontal: 10),
                                   child: RichText(
                                     textAlign: TextAlign.center,
-                                    text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(text: 'We will send you an ', style: TextStyle(color: MyColors.primaryColor)),
-                                          TextSpan(text: 'One Time Password ', style: TextStyle(color: MyColors.primaryColor, fontWeight: FontWeight.bold)),
-                                          TextSpan(text: 'on this mobile number', style: TextStyle(color: MyColors.primaryColor)),
-                                        ]
-                                    ),
-                                  )
-                              ),
+                                    text: TextSpan(children: <TextSpan>[
+                                      TextSpan(text: 'We will send you an ', style: TextStyle(color: MyColors.primaryColor)),
+                                      TextSpan(
+                                          text: 'One Time Password ', style: TextStyle(color: MyColors.primaryColor, fontWeight: FontWeight.bold)),
+                                      TextSpan(text: 'on this mobile number', style: TextStyle(color: MyColors.primaryColor)),
+                                    ]),
+                                  )),
                               Container(
                                 height: 40,
+                                constraints: const BoxConstraints(
+                                  maxWidth: 500
+                                ),
                                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                 child: CupertinoTextField(
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -86,6 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               Container(
                                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                constraints: const BoxConstraints(
+                                    maxWidth: 500
+                                ),
                                 child: RaisedButton(
                                   onPressed: () {
                                     if (phoneController.text.isNotEmpty) {
@@ -94,27 +111,35 @@ class _LoginPageState extends State<LoginPage> {
                                       loginStore.loginScaffoldKey.currentState.showSnackBar(SnackBar(
                                         behavior: SnackBarBehavior.floating,
                                         backgroundColor: Colors.red,
-                                        content: Text('Please enter a phone number', style: TextStyle(color: Colors.white),),
+                                        content: Text(
+                                          'Please enter a phone number',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ));
                                     }
                                   },
                                   color: MyColors.primaryColor,
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(14))
-                                  ),
+                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(14))),
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
-                                        Text('Next', style: TextStyle(color: Colors.white),),
+                                        Text(
+                                          'Next',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                         Container(
                                           padding: const EdgeInsets.all(8),
                                           decoration: BoxDecoration(
                                             borderRadius: const BorderRadius.all(Radius.circular(20)),
                                             color: MyColors.primaryColorLight,
                                           ),
-                                          child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16,),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: Colors.white,
+                                            size: 16,
+                                          ),
                                         )
                                       ],
                                     ),
