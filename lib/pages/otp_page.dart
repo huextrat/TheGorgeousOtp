@@ -14,7 +14,7 @@ class _OtpPageState extends State<OtpPage> {
 
   String text = '';
 
-  _onKeyboardTap(String value) {
+  void _onKeyboardTap(String value) {
     setState(() {
       text = text + value;
     });
@@ -27,7 +27,7 @@ class _OtpPageState extends State<OtpPage> {
         width: 40,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black, width: 0),
-            borderRadius: BorderRadius.all(Radius.circular(8))
+            borderRadius: const BorderRadius.all(Radius.circular(8))
         ),
         child: Center(child: Text(text[position], style: TextStyle(color: Colors.black),)),
       );
@@ -37,7 +37,7 @@ class _OtpPageState extends State<OtpPage> {
         width: 40,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black, width: 0),
-            borderRadius: BorderRadius.all(Radius.circular(8))
+            borderRadius: const BorderRadius.all(Radius.circular(8))
         ),
       );
     }
@@ -53,9 +53,9 @@ class _OtpPageState extends State<OtpPage> {
           appBar: AppBar(
             leading: IconButton(
               icon: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   color: MyColors.primaryColorLight.withAlpha(20),
                 ),
                 child: Icon(Icons.arrow_back_ios, color: MyColors.primaryColor, size: 16,),
@@ -80,7 +80,7 @@ class _OtpPageState extends State<OtpPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Container(
-                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                margin: const EdgeInsets.symmetric(horizontal: 20),
                                 child: Text('Enter 6 digits verification code sent to your number', style: TextStyle(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w500))
                             ),
                             Row(
@@ -99,25 +99,25 @@ class _OtpPageState extends State<OtpPage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         child: RaisedButton(
                           onPressed: () {
                             loginStore.validateOtpAndLogin(context, text);
                           },
                           color: MyColors.primaryColor,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(Radius.circular(14))
                           ),
                           child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text('Confirm', style: TextStyle(color: Colors.white),),
                                 Container(
-                                  padding: EdgeInsets.all(8),
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
                                     color: MyColors.primaryColorLight,
                                   ),
                                   child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16,),

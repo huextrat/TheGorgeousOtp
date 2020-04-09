@@ -19,7 +19,7 @@ class _AppState extends State<App> {
           create: (_) => LoginStore(),
         )
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         home: LoginPage(),
       ),
     );

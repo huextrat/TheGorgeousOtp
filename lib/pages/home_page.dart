@@ -17,25 +17,25 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white,
           body: Center(
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: RaisedButton(
                 onPressed: () {
                   loginStore.signOut(context);
                 },
                 color: MyColors.primaryColor,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(14))
                 ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text('Sign Out', style: TextStyle(color: Colors.white),),
                       Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
                           color: MyColors.primaryColorLight,
                         ),
                         child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16,),

@@ -10,7 +10,7 @@ part 'login_store.g.dart';
 class LoginStore = LoginStoreBase with _$LoginStore;
 
 abstract class LoginStoreBase with Store {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   String actualCode;
 
   @observable
@@ -19,9 +19,9 @@ abstract class LoginStoreBase with Store {
   bool isOtpLoading = false;
 
   @observable
-  GlobalKey<ScaffoldState> loginScaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> loginScaffoldKey = GlobalKey<ScaffoldState>();
   @observable
-  GlobalKey<ScaffoldState> otpScaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> otpScaffoldKey = GlobalKey<ScaffoldState>();
 
   @observable
   FirebaseUser firebaseUser;
@@ -32,7 +32,7 @@ abstract class LoginStoreBase with Store {
 
     await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
-        timeout: Duration(seconds: 60),
+        timeout: const Duration(seconds: 60),
         verificationCompleted: (AuthCredential auth) async {
           await _auth
               .signInWithCredential(auth)
@@ -56,7 +56,7 @@ abstract class LoginStoreBase with Store {
           });
         },
         verificationFailed: (AuthException authException) {
-          print("Error message: " + authException.message);
+          print('Error message: ' + authException.message);
           loginScaffoldKey.currentState.showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.red,
@@ -67,7 +67,7 @@ abstract class LoginStoreBase with Store {
         codeSent: (String verificationId, [int forceResendingToken]) async {
           actualCode = verificationId;
           isLoginLoading = false;
-          await Navigator.of(context).push(MaterialPageRoute(builder: (_) => OtpPage()));
+          await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const OtpPage()));
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           actualCode = verificationId;
@@ -78,7 +78,7 @@ abstract class LoginStoreBase with Store {
   @action
   Future<void> validateOtpAndLogin(BuildContext context, String smsCode) async {
     isOtpLoading = true;
-    AuthCredential _authCredential = PhoneAuthProvider.getCredential(
+    final AuthCredential _authCredential = PhoneAuthProvider.getCredential(
         verificationId: actualCode, smsCode: smsCode);
 
     await _auth.signInWithCredential(_authCredential).catchError((error) {
@@ -111,7 +111,7 @@ abstract class LoginStoreBase with Store {
   @action
   Future<void> signOut(BuildContext context) async {
     await _auth.signOut();
-    await Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => LoginPage()), (Route<dynamic> route) => false);
+    await Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => const LoginPage()), (Route<dynamic> route) => false);
     firebaseUser = null;
   }
 }
