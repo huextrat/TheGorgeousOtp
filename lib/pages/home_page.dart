@@ -4,6 +4,7 @@ import 'package:thegorgeousotp/stores/login_store.dart';
 import 'package:thegorgeousotp/theme.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }

@@ -27,6 +27,16 @@ abstract class LoginStoreBase with Store {
   FirebaseUser firebaseUser;
 
   @action
+  Future<bool> isAlreadyAuthenticated() async {
+    firebaseUser = await _auth.currentUser();
+    if (firebaseUser != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @action
   Future<void> getCodeWithPhoneNumber(BuildContext context, String phoneNumber) async {
     isLoginLoading = true;
 

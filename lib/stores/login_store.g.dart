@@ -94,6 +94,15 @@ mixin _$LoginStore on LoginStoreBase, Store {
     }, _$firebaseUserAtom, name: '${_$firebaseUserAtom.name}_set');
   }
 
+  final _$isAlreadyAuthenticatedAsyncAction =
+      AsyncAction('isAlreadyAuthenticated');
+
+  @override
+  Future<bool> isAlreadyAuthenticated() {
+    return _$isAlreadyAuthenticatedAsyncAction
+        .run(() => super.isAlreadyAuthenticated());
+  }
+
   final _$getCodeWithPhoneNumberAsyncAction =
       AsyncAction('getCodeWithPhoneNumber');
 
