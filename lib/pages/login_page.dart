@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thegorgeousotp/stores/login_store.dart';
+import 'package:thegorgeousotp/theme.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key key}) : super(key: key);
@@ -46,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Container(
                               margin: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text('TheGorgeousOtp', style: TextStyle(color: Color(0xFF503E9D), fontSize: 30, fontWeight: FontWeight.w800))
+                              child: Text('TheGorgeousOtp', style: TextStyle(color: MyColors.primaryColor, fontSize: 30, fontWeight: FontWeight.w800))
                           )
                         ],
                       ),
@@ -61,9 +60,9 @@ class _LoginPageState extends State<LoginPage> {
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
                                     children: <TextSpan>[
-                                      TextSpan(text: 'We will send you an ', style: TextStyle(color: Color(0xFF503E9D))),
-                                      TextSpan(text: 'One Time Password ', style: TextStyle(color: Color(0xFF503E9D), fontWeight: FontWeight.bold)),
-                                      TextSpan(text: 'on this mobile number', style: TextStyle(color: Color(0xFF503E9D))),
+                                      TextSpan(text: 'We will send you an ', style: TextStyle(color: MyColors.primaryColor)),
+                                      TextSpan(text: 'One Time Password ', style: TextStyle(color: MyColors.primaryColor, fontWeight: FontWeight.bold)),
+                                      TextSpan(text: 'on this mobile number', style: TextStyle(color: MyColors.primaryColor)),
                                     ]
                                 ),
                               )
@@ -94,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ));
                                 }
                               },
-                              color: Color(0xFF503E9D),
+                              color: MyColors.primaryColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(14))
                               ),
@@ -108,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                                       padding: EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(Radius.circular(20)),
-                                        color: Color(0xFF6252A7),
+                                        color: MyColors.primaryColorLight,
                                       ),
                                       child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16,),
                                     )
