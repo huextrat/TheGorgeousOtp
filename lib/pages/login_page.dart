@@ -91,6 +91,10 @@ class _LoginPageState extends State<LoginPage> {
                                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                 child: CupertinoTextField(
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: const BorderRadius.all(Radius.circular(4))
+                                  ),
                                   controller: phoneController,
                                   clearButtonMode: OverlayVisibilityMode.editing,
                                   keyboardType: TextInputType.phone,
