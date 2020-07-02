@@ -9,8 +9,6 @@ import 'package:thegorgeousotp/theme.dart';
 import 'package:thegorgeousotp/widgets/loader_hud.dart';
 
 import '../theme.dart';
-import '../theme.dart';
-import '../theme.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({Key key}) : super(key: key);
@@ -63,8 +61,9 @@ class _OtpPageState extends State<OtpPage> {
         height: 40,
         width: 40,
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 0),
-            borderRadius: const BorderRadius.all(Radius.circular(8))),
+          border: Border.all(color: Colors.black, width: 0),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+        ),
       );
     }
   }
@@ -145,12 +144,14 @@ class _OtpPageState extends State<OtpPage> {
                           Container(
                             child: _counter > 0
                                 ? Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('Retry in ${_counter.toString()} secs...'),
-                                )
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        'Retry in ${_counter.toString()} secs...'),
+                                  )
                                 : FlatButton(
                                     child: const Text('Retry for OTP'),
-                                    onPressed: () => Navigator.of(context).pop(),
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
                                     textColor: MyColors.primaryColorLight,
                                   ),
                           ),
