@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
@@ -6,6 +8,10 @@ import 'package:thegorgeousotp/stores/login_store.dart';
 import 'package:thegorgeousotp/theme.dart';
 import 'package:thegorgeousotp/widgets/loader_hud.dart';
 
+import '../theme.dart';
+import '../theme.dart';
+import '../theme.dart';
+
 class OtpPage extends StatefulWidget {
   const OtpPage({Key key}) : super(key: key);
   @override
@@ -13,6 +19,22 @@ class OtpPage extends StatefulWidget {
 }
 
 class _OtpPageState extends State<OtpPage> {
+  Timer _timer;
+  int _counter = 30;
+
+  @override
+  void initState() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() {
+        if (_counter > 0) {
+          _counter--;
+        } else {
+          _timer.cancel();
+        }
+      });
+    });
+    super.initState();
+  }
 
   String text = '';
 
@@ -29,9 +51,12 @@ class _OtpPageState extends State<OtpPage> {
         width: 40,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black, width: 0),
-            borderRadius: const BorderRadius.all(Radius.circular(8))
-        ),
-        child: Center(child: Text(text[position], style: TextStyle(color: Colors.black),)),
+            borderRadius: const BorderRadius.all(Radius.circular(8))),
+        child: Center(
+            child: Text(
+          text[position],
+          style: TextStyle(color: Colors.black),
+        )),
       );
     } catch (e) {
       return Container(
@@ -39,8 +64,7 @@ class _OtpPageState extends State<OtpPage> {
         width: 40,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black, width: 0),
-            borderRadius: const BorderRadius.all(Radius.circular(8))
-        ),
+            borderRadius: const BorderRadius.all(Radius.circular(8))),
       );
     }
   }
@@ -63,7 +87,11 @@ class _OtpPageState extends State<OtpPage> {
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       color: MyColors.primaryColorLight.withAlpha(20),
                     ),
-                    child: Icon(Icons.arrow_back_ios, color: MyColors.primaryColor, size: 16,),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: MyColors.primaryColor,
+                      size: 16,
+                    ),
                   ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
@@ -85,16 +113,22 @@ class _OtpPageState extends State<OtpPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Container(
-                                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                                    child: Text('Enter 6 digits verification code sent to your number', style: TextStyle(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w500))
-                                ),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: Text(
+                                        'Enter 6 digits verification code sent to your number',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 26,
+                                            fontWeight: FontWeight.w500))),
                                 Container(
-                                  constraints: const BoxConstraints(
-                                      maxWidth: 500
-                                  ),
+                                  constraints:
+                                      const BoxConstraints(maxWidth: 500),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: <Widget>[
                                       otpNumberWidget(0),
                                       otpNumberWidget(1),
@@ -109,31 +143,52 @@ class _OtpPageState extends State<OtpPage> {
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                            constraints: const BoxConstraints(
-                                maxWidth: 500
-                            ),
+                            child: _counter > 0
+                                ? Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('Retry in ${_counter.toString()} secs...'),
+                                )
+                                : FlatButton(
+                                    child: const Text('Retry for OTP'),
+                                    onPressed: () => Navigator.of(context).pop(),
+                                    textColor: MyColors.primaryColorLight,
+                                  ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            constraints: const BoxConstraints(maxWidth: 500),
                             child: RaisedButton(
                               onPressed: () {
                                 loginStore.validateOtpAndLogin(context, text);
                               },
                               color: MyColors.primaryColor,
                               shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(14))
-                              ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(14))),
                               child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 8),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text('Confirm', style: TextStyle(color: Colors.white),),
+                                    Text(
+                                      'Confirm',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                     Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20)),
                                         color: MyColors.primaryColorLight,
                                       ),
-                                      child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16,),
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
                                     )
                                   ],
                                 ),
